@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: details-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: details-app
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: details-app
-          image: alayani/details_app:latest
+          image: {{ .Values.images.details_app }}
           ports:
             - containerPort: {{ .Values.ports.details_app }} # This is the internal container port
           resources:
@@ -50,7 +50,7 @@ spec:
           claimName: postgres-pvc
       containers:
         - name: postgres
-          image: alayani/postgres:latest
+          image: {{ .Values.images.postgres }}
 
           ports:
             - containerPort: {{ .Values.ports.postgres }} # This is the internal container port

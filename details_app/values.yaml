@@ -1,3 +1,12 @@
-ports:
-  details_app: 8000
-  postgres: 5432
+
+images:
+  details_app: alayani/details_app:latest
+  postgres: alayani/postgres:latest
+
+db_pg:
+  POSTGRES_PASSWORD: pgadmin
+  POSTGRES_USER: pgadmin
+  POSTGRES_DB: postgres
+  DBHOST=postgres-container
+  DBNAME=postgres
+  SECRET_KEY=bKw%TW6XqRaHgTHnQ6*ZCYfwwQY1jG

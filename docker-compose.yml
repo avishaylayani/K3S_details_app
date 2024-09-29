@@ -1,0 +1,51 @@
+x-common-api-settings: &common-settings
+  # image: link-shortener-devops
+  image: details_app
+  environment:
+    - POSTGRES_PASSWORD=pgadmin
+    - POSTGRES_USER=pgadmin
+    - DBHOST=postgres-container
+    - DBNAME=postgres
+    - SECRET_KEY=bKw%TW6XqRaHgTHnQ6*ZCYfwwQY1jG
+  # healthcheck:
+  #   test: ["CMD", "curl", "localhost:8080/api/health_check"]
+  #   interval: 3600s
+  #   timeout: 3s
+  #   retries: 10
+  deploy:
+    resources:
+      limits:
+        cpus: "1"
+        memory: 512M
+  ports:
+    - 8000:8000
+  networks:
+    - details
+
+services:
+  api-details:
+    depends_on: 
+      - postgresql
+    container_name: api_details
+    <<: *common-settings
+
+
+  postgresql:
+    image: postgres
+    container_name: postgres-container
+    volumes:
+      - ./pgsql/data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pgadmin
+      POSTGRES_USER: pgadmin
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    networks:
+      - details
+
+networks:
+  details:
+    name: details
+    driver: bridge

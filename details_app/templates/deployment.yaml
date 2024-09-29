@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: details-app
 spec:
-  replicas: 2
+  replicas: {{ .Values.rep_set.details_app }}
   selector:
     matchLabels:
       app: details-app
@@ -19,12 +19,14 @@ spec:
           env:          
             - name: POSTGRES_USER
               value: {{ .Values.db_pg.POSTGRES_USER }}
-            - name: POSTGRES_DB
-              value: {{ .Values.db_pg.POSTGRES_DB }}
             - name: POSTGRES_PASSWORD
               value: {{ .Values.secrets.POSTGRES_PASSWORD }}  # Use decrypted secret
             - name: SECRET_KEY
               value: {{ .Values.secrets.SECRET_KEY }}  # Use decrypted secret
+            - name: DBHOST
+              value: {{ .Values.db_pg.DBHOST }}
+            - name: DBNAME
+              value: {{ .Values.db_pg.DBNAME }}
           image: {{ .Values.images.details_app }}
           ports:
             - containerPort: 8000 # This is the internal container port
@@ -41,7 +43,7 @@ kind: Deployment
 metadata:
   name: postgres
 spec:
-  replicas: 1
+  replicas: {{ .Values.rep_set.postgres }}
   selector:
     matchLabels:
       app: postgres
@@ -59,6 +61,13 @@ spec:
           claimName: postgres-pvc
       containers:
         - name: postgres
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.db_pg.POSTGRES_DB }}
+            - name: POSTGRES_USER
+              value: {{ .Values.db_pg.POSTGRES_USER }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.secrets.POSTGRES_PASSWORD }}  # Use decrypted secret
           image: {{ .Values.images.postgres }}
 
           ports:

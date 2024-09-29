@@ -21,4 +21,4 @@ rad.json
 #Test results file
 TestResults.xml
 
-template_chart/
+details_app/values.yaml

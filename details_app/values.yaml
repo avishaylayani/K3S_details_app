@@ -1,12 +1,21 @@
+app:
+  name: k3s_details_app
+  version: 1.0.0
+
+replica_sets:
+  details_app: 2
+  postgres: 0
 
 images:
   details_app: alayani/details_app:latest
   postgres: alayani/postgres:latest
 
 db_pg:
-  POSTGRES_PASSWORD: pgadmin
   POSTGRES_USER: pgadmin
   POSTGRES_DB: postgres
-  DBHOST=postgres-container
-  DBNAME=postgres
-  SECRET_KEY=bKw%TW6XqRaHgTHnQ6*ZCYfwwQY1jG
+  DBHOST: postgres-container
+  DBNAME: postgres
+
+secrets:
+  POSTGRES_PASSWORD: pgadmin
+  SECRET_KEY: bKw%TW6XqRaHgTHnQ6*ZCYfwwQY1jG

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: details-app
 spec:
-  replicas: 2
+  replicas: {{ .Values.replica_sets.details_app }}
   selector:
     matchLabels:
       app: details-app
@@ -18,7 +18,7 @@ spec:
         - name: details-app
           image: {{ .Values.images.details_app }}
           ports:
-            - containerPort: {{ .Values.ports.details_app }} # This is the internal container port
+            - containerPort: 8000 # This is the internal container port
           resources:
             requests:
               memory: "128Mi"
@@ -32,7 +32,7 @@ kind: Deployment
 metadata:
   name: postgres
 spec:
-  replicas: 1
+  replicas: {{ .Values.replica_sets.postgres }}
   selector:
     matchLabels:
       app: postgres
@@ -51,9 +51,15 @@ spec:
       containers:
         - name: postgres
           image: {{ .Values.images.postgres }}
-
+          env:
+            - name: DB_USERNAME
+            - value: {{ .Values.db_pg.POSTGRES_USER }}
+            - name: DB_PASSWORD
+            - value: {{ .Values.secrets.POSTGRES_PASSWORD }}
+            - name: DB_TOKEN
+            - value: {{ .Values.secrets.SECRET_KEY }}
           ports:
-            - containerPort: {{ .Values.ports.postgres }} # This is the internal container port
+            - containerPort: 5432 # This is the internal container port
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data

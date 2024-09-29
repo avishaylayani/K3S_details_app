@@ -1,0 +1,4 @@
+# sops.yaml
+creation_rules:
+  - pgp: "7728CD44531FC223"
+    encrypted_regex: '^(POSTGRES_PASSWORD|SECRET_KEY)$'

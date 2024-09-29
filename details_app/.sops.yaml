@@ -1,0 +1,3 @@
+creation_rules:
+  - pgp: "395DD1A8C15F2C90B549ACFF3E117E863E589149"
+    encrypted_regex: '^(POSTGRES_PASSWORD|SECRET_KEY)$'

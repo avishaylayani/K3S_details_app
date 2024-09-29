@@ -1,12 +1,42 @@
-
 images:
-  details_app: alayani/details_app:latest
-  postgres: alayani/postgres:latest
-
+    details_app: alayani/details_app:latest
+    postgres: alayani/postgres:latest
 db_pg:
-  POSTGRES_PASSWORD: pgadmin
-  POSTGRES_USER: pgadmin
-  POSTGRES_DB: postgres
-  DBHOST=postgres-container
-  DBNAME=postgres
-  SECRET_KEY=bKw%TW6XqRaHgTHnQ6*ZCYfwwQY1jG
+    POSTGRES_USER: pgadmin
+    POSTGRES_DB: postgres
+    DBHOST: postgres-container
+    DBNAME: postgres
+secrets:
+    POSTGRES_PASSWORD: ENC[AES256_GCM,data:YSzQ0eUh4Q==,iv:LmO51eP0gEDF0Wi67uGI4WeXL9pABS9pFzo++8O9wPA=,tag:x2u4urPqnAhjEA10EOZ3qw==,type:str]
+    SECRET_KEY: ENC[AES256_GCM,data:VaKNW4nWjWzRkV2d2p8Qc0HufPr9TvSVIkjztKLm,iv:Fcm7ZowwbazHbNW/MAzCCC7Bv/TKdPXXx1barDFt9nw=,tag:DIbG8LOZJv62xHQxb9gG6w==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2024-09-29T19:38:10Z"
+    mac: ENC[AES256_GCM,data:QQc+iEevo+7g37lnCQ+gxrtCQebkzbSC9PDdGBqgcsCyab4Vn5p8cHsHEGZQnFLZaCpSpTx/X3FIDeCbSCkimETRvKZymJbceI/PwKvK9j1hVmDyUeoaX00649I/hJfW2EKCspmZ7ZE92ZHeKsIJVSxZMVTO01FYKADOVXcXtn8=,iv:I5GzWfvEDo16FsKWnFNJ5SeFFcGVLsmrEZzk7ygRbb8=,tag:LyBdJXHy3P01cnO91QAvsA==,type:str]
+    pgp:
+        - created_at: "2024-09-29T19:38:10Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA9LpJrzlQ/K3AQ//U7W2LgQoHjjHdXBch7ZcXhN1FNOhuLuyn7s0XpYqtOBX
+            JyzCAlb4pN/QD5XQjgtAPGoaWQ7SShfF2716sN3ceGoZRJfKM2TGf0AOCaLB7AoP
+            vw0aCw+8bp32mqLm1YSG37dA7GAQ6Z2iaNH/3LVioFv+1TCpx1j6PubfU7asACo6
+            dPVzME6LuAYUcBM5UOHJqFEYw7DFcMNuKDEqbJ0/05CZy2OLrAxJ+g1dA+oVh7D8
+            daTnzVODt1Q398DlmLUFZxr75PBdxZHHsmRUCFHXr8zqfAcEt1bsNL5wqer5qqcG
+            e2xpUQTf164N0v7DNTAQZi5R8JlseETkAYVPqovLm/KScVu7SN8QExL+1nymSpxz
+            1LUes2ohcQ9tLWG0XsWeN7VcArkFVlqsfqzKV3FC6jrtoQeO8RaBeSWxqICUpbwu
+            mseyd1EBY55sM/F5ONtLCTI6p4NS4z6aGj+LJV7VrXsRnrE3VhGRxqSoSKB1rR+A
+            eKeMv+PNcWkzunQR1eIaevSzOLK+nq4ulpTrvKtaj9P0PBZNI7D7Nnt4+snYARaM
+            7VuRTwcFpzn6VsUYNO/KmvJZLUBgCPTDfOHYbUI+mccKOME1wVAS4HXk03eDU3OM
+            2qiSKS/pILYn+QKGsmqrDefl9j4yo3eeSRaEuP50aUaMt+GcKLp+FcqQnnxRVjXS
+            XgEeFcuskOX8XSfa3vEpXrSj+Yf8W/kbVMjlXbzOXezbsFgddVtMiwTosingjRgt
+            IBdy/2P48vNe/2VHmb3h5PHUv8Yr1DWwaFjdV2bIWydrpErXKN+IgisoyD7jFKA=
+            =mxHp
+            -----END PGP MESSAGE-----
+          fp: 395DD1A8C15F2C90B549ACFF3E117E863E589149
+    encrypted_regex: ^(POSTGRES_PASSWORD|SECRET_KEY)$
+    version: 3.9.0

@@ -16,9 +16,18 @@ spec:
     spec:
       containers:
         - name: details-app
+          env:          
+            - name: POSTGRES_USER
+              value: {{ .Values.db_pg.POSTGRES_USER }}
+            - name: POSTGRES_DB
+              value: {{ .Values.db_pg.POSTGRES_DB }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.secrets.POSTGRES_PASSWORD }}  # Use decrypted secret
+            - name: SECRET_KEY
+              value: {{ .Values.secrets.SECRET_KEY }}  # Use decrypted secret
           image: {{ .Values.images.details_app }}
           ports:
-            - containerPort: {{ .Values.ports.details_app }} # This is the internal container port
+            - containerPort: 8000 # This is the internal container port
           resources:
             requests:
               memory: "128Mi"
@@ -53,7 +62,7 @@ spec:
           image: {{ .Values.images.postgres }}
 
           ports:
-            - containerPort: {{ .Values.ports.postgres }} # This is the internal container port
+            - containerPort: 5432 # This is the internal container port
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data

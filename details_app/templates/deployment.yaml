@@ -18,7 +18,7 @@ spec:
         - name: details-app
           image: alayani/details_app:latest
           ports:
-            - containerPort: 8000 # This is the internal container port
+            - containerPort: {{ .Values.ports.details_app }} # This is the internal container port
           resources:
             requests:
               memory: "128Mi"
@@ -53,7 +53,7 @@ spec:
           image: alayani/postgres:latest
 
           ports:
-            - containerPort: 5432 # This is the internal container port
+            - containerPort: {{ .Values.ports.postgres }} # This is the internal container port
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data

@@ -1,3 +1,4 @@
 .vscode/
 details_app/values.yaml
 notes.txt
+details_app/.sops.yaml

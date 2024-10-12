@@ -5,7 +5,7 @@ Get existing keys:
 gpg --list-keys
 
 Encrypting the key: 
-sops -e --config details_app/.sops.yaml -i details_app/values.yaml > encrypted_values.yaml
+sops -e --config details_app/.sops.yaml details_app/values.yaml > encrypted_values.yaml
 
 For BASH script, import the private key to be able to decrypt the values file : 
 gpg --import private.key

@@ -12,7 +12,7 @@ set -o pipefail # Return non-zero status if any part of a pipeline fails
 
 # Getting the private key file to encrypt the values file, and create a decrypted one in the details_app helm folder
 secret_key_id="62917C0D840BFB257B005527B6AC02EBC574597F"
-private_key_url="https://tinyurl.com/ypm9nkwca"
+private_key_url="https://tinyurl.com/ypm9nkwc"
 
 cleaning_secret_key="gpg --batch --yes --delete-secret-key $secret_key_id 2> /dev/null" # saved commadn that deletes the private key from registry - used multiple time in the script
 

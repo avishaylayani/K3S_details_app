@@ -1,23 +1,3 @@
-Creating gpg key: 
-gpg --gen-key
-
-Get existing keys: 
-gpg --list-keys
-
-Encrypting the key: 
-sops -e --config details_app/.sops.yaml details_app/values.yaml > values_encrypted.yaml
-
-For BASH script, import the private key to be able to decrypt the values file : 
-gpg --import private.key
-
-Decrypting the values file, to a one with decrypted values
-sops -d values_encrypted.yaml > details_app/values.yaml
-
-Exporting Private key from existing, loaded, gpg key: 
-gpg --export-secret-key 62917C0D840BFB257B005527B6AC02EBC574597F > private.key
-
-Export public keys:
-gpg -armor --export 62917C0D840BFB257B005527B6AC02EBC574597F > public.key
 
 
 Dependencies: 
@@ -28,3 +8,11 @@ k3s
 
 port 8000 open
 port 5432 open
+
+
+
+https://github.com/lavishay-technion/details_app_old/tree/details_app_with_helm
+
+
+
+https://hub.docker.com/layers/alayani/details_app/test/images/sha256-b023e92f9c9369a8f12c06d9acb1a6104ac000f82961fe8987f064c58567609e?context=repo

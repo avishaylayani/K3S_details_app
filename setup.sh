@@ -13,12 +13,14 @@ set -o pipefail # Return non-zero status if any part of a pipeline fails
 # Getting the private key file to encrypt the values file, and create a decrypted one in the details_app helm folder
 curl -s -L https://tinyurl.com/ypm9nkwc -o private.key 
 
-# For BASH script, import the private key to be able to decrypt the values file 
-gpg --import private.key
+# For BASH script, import the private key to be able to decrypt the values file & Delete the privet key from local (whether imported succeded or faild)
+( gpg --import private.key && rm -rf private.key ) || rm -rf private.key
 
 # Decrypting the values file, to a one with decrypted values
 sops -d values_encrypted.yaml > details_app/values.yaml
 
+# Deploy details_app using Helm 
 helm install detailsapp details_app
 
-rm -rf private.key
+
+
